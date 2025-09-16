@@ -1,0 +1,17 @@
+{
+  "name": "com.ofgodsandmen.core",
+  "version": "1.0.0",
+  "displayName": "Of Gods and Men Core Scripts",
+  "description": "Core scripts for the Of Gods and Men game implementation including GameManager, PlayerController, and SceneManager.",
+  "unity": "6000.2.4f1",
+  "keywords": [
+    "Of Gods and Men",
+    "RPG",
+    "core scripts"
+  ],
+  "author": {
+    "name": "Of Gods and Men Development Team",
+    "email": "development@ofgodsandmen.com",
+    "url": "https://ofgodsandmen.com"
+  }
+}
