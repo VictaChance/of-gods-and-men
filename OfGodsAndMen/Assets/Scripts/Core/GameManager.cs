@@ -6,14 +6,38 @@ using UnityEngine.SceneManagement;
 // GameManager handles global game state, player stats, corruption system, and beast taming
 public class GameManager : MonoBehaviour
 {
-    // Singleton instance
+    // DO NOT CHANGE - This makes it accessible everywhere
     public static GameManager Instance { get; private set; }
-    
-    // Player stats
+
+    // Player Stats - You can change these numbers
+    public float playerHealth = 100f;
+    public float playerMana = 100f;
+    public int playerGold = 0;
     public int playerLevel { get; private set; } = 1;
     public int gold { get; private set; } = 0;
     public int corruption { get; private set; } = 0;
-    
+
+    // Corruption System
+    public float corruptionLevel = 0f;
+    public float corruptionResistance = 50f;
+
+    // Player Attributes
+    public int strength = 10;
+    public int dexterity = 10;
+    public int intelligence = 10;
+    public int constitution = 10;
+
+    // Level up function
+    public void LevelUp()
+    {
+        playerLevel++;
+        strength++;
+        dexterity++;
+        intelligence++;
+        constitution++;
+        Debug.Log("Player leveled up to level " + playerLevel);
+    }
+
     // Beast taming system
     public bool isBeastTamed { get; private set; } = false;
     public string tamedBeast { get; private set; } = "";

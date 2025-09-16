@@ -18,7 +18,7 @@ public class SceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(MainMenuScene);
     }
     
-    // Load game scenes
+    // Load scenes
     public void LoadGameScene1()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(GameScene1);

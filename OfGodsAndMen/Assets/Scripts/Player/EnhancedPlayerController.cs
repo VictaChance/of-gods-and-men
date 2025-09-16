@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // EnhancedPlayerController manages player movement with WASD/arrow keys and jumping, with additional features
 public class EnhancedPlayerController : MonoBehaviour
@@ -18,7 +19,10 @@ public class EnhancedPlayerController : MonoBehaviour
     // State
     private bool isGrounded;
     private bool isSprinting = false;
-    
+    private Vector2 moveInput; // Stores movement input
+    private bool jumpInput;    // Stores jump input
+    private bool sprintInput;    // Stores sprint input
+
     // Animation parameters
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
@@ -43,15 +47,38 @@ public class EnhancedPlayerController : MonoBehaviour
             Debug.LogError("EnhancedPlayerController requires an Animator component");
         }
     }
-    
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        // Capture movement input
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        // Capture jump input
+        if (context.performed)
+        {
+            jumpInput = true;
+        }
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        // Capture sprint input
+        isSprinting = context.ReadValue<float>() > 0;
+    }
+
+
     private void Update()
     {
         // Handle jumping
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (jumpInput && isGrounded)
         {
             Jump();
+            jumpInput = false; // Reset jump input
         }
-        
+
         // Handle sprinting
         isSprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         
